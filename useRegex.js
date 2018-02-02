@@ -2,7 +2,8 @@ function UseRegexSolution (arr) {
 
      // sorter, til string og regexr match tal 1-6 mindst 2 efter hinanden - for arr: [3,2,2,2,3] => ['222','33']
     var _regexArr = (function getRegex(arr) {
-        return arr.sort().join('').match(/([1-6])\1+/g);
+        var clone = arr.slice(0);
+        return clone.sort().join('').match(/([1-6])\1+/g);
     })(arr)
 
     var _sum = (function get_Sum(arr) {

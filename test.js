@@ -4,7 +4,7 @@ var UseRegexSolution = require('./useRegex.js');
 
 runTest(true);
 
-function runTest(clear, size = 100000) { // 1 million tager ca 16 sek - 10 millioner giver 'JavaScript heap out of memory'
+function runTest(clear, size = 500000) { // 1 million tager ca 16 sek - 10 millioner giver 'JavaScript heap out of memory'
    
     console.time('t');
 
@@ -26,6 +26,8 @@ function runTest(clear, size = 100000) { // 1 million tager ca 16 sek - 10 milli
         return arrSize;
     }(5, [1, 6], size))
 
+
+
     function assert(condition, message) {
         if (!condition) {
             throw message;
@@ -34,13 +36,17 @@ function runTest(clear, size = 100000) { // 1 million tager ca 16 sek - 10 milli
 
     var fejlBesked = ["Et input af: ", " af type ", " returnerer ikke samme output"];
 
+
    // let func = new ArrayInputFunctions(); // Parasitic constructor/ Factory - ('new' ikke nødvendig)
 
     for (let test of randomArray) {
+    
 
         let useRegex  = new UseRegexSolution(test) 
 
         let oneLoop = OneLoopSolution; 
+        
+     
         
         /*
             Test af UseRegexSolution vs OneLoopSolution
@@ -51,8 +57,7 @@ function runTest(clear, size = 100000) { // 1 million tager ca 16 sek - 10 milli
             fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] + // PUT ME IN A FUNCTION
             "\noneLoop.fullHouse() returnerer: " + oneLoop.fullHouse(test) + ' og useRegex.fullHouse() returnerer: ' + useRegex.fullHouse()
         );
-      
-        
+     
         assert(
             oneLoop.twoPairs(test) === useRegex.twoPairs(),
             fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
@@ -101,7 +106,7 @@ function runTest(clear, size = 100000) { // 1 million tager ca 16 sek - 10 milli
         );
          
     }
-
+    
     console.log("All tests passed!");
     console.timeEnd('t');
 
