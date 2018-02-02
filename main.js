@@ -11,7 +11,6 @@ function OneLoopSolution(arr, name) {
         pairCount = 0, // for arr : [1,2,2,4,1] => 2
         sum = 0,
         obj = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0,6: 0 }; //public , for arr : [1,2,2,4,1] => { 1: 2, 2: 4, 3: 0, 4: 4, 5: 0, 6: 0 }
-
         
     for (let a of arr) {
         sum += a;
@@ -28,11 +27,11 @@ function OneLoopSolution(arr, name) {
     obj.fourKind = pairs[0] * 4 <= obj[pairs[0]] ? pairs[0] * 4 : 0;
     // Samme logik, men der kan kun være 1 par
     obj.twoPairs = ((pairs[0] + pairs[1]) * 2) * (pairCount - 1); // for arr : [1,2,2,4,1] => 6 
-    // pairCount sikrer at 0 returneres ved ingen eller 1 par.
-    // ret så den ikke returnerer -0 ved ingen par? -0 === 0 => true(?!) - Object.is(-0, 0) => false
+    // pairCount sikrer at 0 returneres ved ingen eller 1 par. 
+    // ret så den ikke returnerer -0 ved ingen par? -0 === 0 => true(?!) - Object.is(-0, 0) => false , løsn. Number(!!pairs[1])
     obj.fullHouse = obj.threeKind && obj.twoPairs ? sum : 0;
-    obj.low = !obj[6] && !obj.twoKind ? 15 : 0;
-    obj.high = !obj[1] && !obj.twoKind ? 20 : 0;
+    obj.low = !obj.twoKind && sum === 15 ? 15 : 0;
+    obj.high = !obj.twoKind && sum === 20 ? 20 : 0;
     obj.yatzy = obj.fourKind * 5 / 4 === sum ? 50 : 0;
     obj.chance = sum;
 
@@ -47,13 +46,11 @@ function OneLoopSolution(arr, name) {
 // Jeg antager at funktionen, med denne struktur, vil blive kaldt flere gange med det samme array som input. 
 // Derfor tilføjes et cache object på funktionen. Dette er naturligvis tiltænkt større datamængder/beregninger.
 
-// console.log(ettere([1,1,2,2,1])) // looping... 3
-// console.log(fullHouse([1,1,2,2,1])) // hello from cache... 7
-// console.log(yatzy([1,2,3,4,5])) // looping... 0
+console.log(ettere([1,1,2,2,1])) // looping... 3
+console.log(fullHouse([1,1,2,2,1])) // hello from cache... 7
+console.log(yatzy([1,2,3,4,5])) // looping... 0
 
 // Implementeret som i 'Javascript Patterns' af Stoyan Stefanov s. 76 - 'Function Properties - A Memoization Pattern'
-
-
 
 function ettere(arr) {
     return OneLoopSolution(arr, 1)

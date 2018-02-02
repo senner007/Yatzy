@@ -49,55 +49,55 @@ function runTest(clear, size = 100000) { // 1 million tager ca 16 sek - 10 milli
         assert(
             oneLoop.fullHouse(test) === useRegex.fullHouse(),
             fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] + // PUT ME IN A FUNCTION
-            "\noneLoop.fullHouse() returnerer: " + oneLoop.fullHouse + ' og useRegex.fullHouse() returnerer: ' + useRegex.fullHouse()
+            "\noneLoop.fullHouse() returnerer: " + oneLoop.fullHouse(test) + ' og useRegex.fullHouse() returnerer: ' + useRegex.fullHouse()
         );
       
         
         assert(
             oneLoop.twoPairs(test) === useRegex.twoPairs(),
             fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
-            "\noneLoop.twoPairs() returnerer: " + oneLoop.twoPairs + ' og useRegex.twoPairs() returnerer: ' + useRegex.twoPairs()
+            "\noneLoop.twoPairs() returnerer: " + oneLoop.twoPairs(test) + ' og useRegex.twoPairs() returnerer: ' + useRegex.twoPairs()
         );
      
         assert(
             oneLoop.twoKind(test) === useRegex.twoKind(),
             fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
-            "\noneLoop.twoKind() returnerer: " + oneLoop.twoKind + ' og useRegex.twoKind() returnerer: ' + useRegex.twoKind()
+            "\noneLoop.twoKind() returnerer: " + oneLoop.twoKind(test) + ' og useRegex.twoKind() returnerer: ' + useRegex.twoKind()
         );
      
         assert(
             oneLoop.threeKind(test) === useRegex.threeKind(),
             fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
-            "\noneLoop.threeKind() returnerer: " + oneLoop.threeKind + ' og useRegex.threeKind() returnerer: ' + useRegex.threeKind()
+            "\noneLoop.threeKind() returnerer: " + oneLoop.threeKind(test) + ' og useRegex.threeKind() returnerer: ' + useRegex.threeKind()
         );
       
         assert(
             oneLoop.fourKind(test) === useRegex.fourKind(),
             fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
-            "\noneLoop.fourKind() returnerer: " + oneLoop.fourKind + ' og useRegex.fourKind() returnerer: ' + useRegex.fourKind()
+            "\noneLoop.fourKind() returnerer: " + oneLoop.fourKind(test) + ' og useRegex.fourKind() returnerer: ' + useRegex.fourKind()
         );
         
         assert(
             oneLoop.yatzy(test) === useRegex.yatzy(),
             fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
-            "\noneLoop.yatzy() returnerer: " + oneLoop.yatzy + ' og useRegex.yatzy() returnerer: ' + useRegex.yatzy()
+            "\noneLoop.yatzy() returnerer: " + oneLoop.yatzy(test) + ' og useRegex.yatzy() returnerer: ' + useRegex.yatzy()
         );
       
         assert(
             oneLoop.chance(test) === useRegex.chance(),
             fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
-            "\noneLoop.chance() returnerer: " + oneLoop.chance + ' og useRegex.chance() returnerer: ' + useRegex.chance()
+            "\noneLoop.chance() returnerer: " + oneLoop.chance(test) + ' og useRegex.chance() returnerer: ' + useRegex.chance()
         );
         assert(
             oneLoop.low(test) === useRegex.low(),
             fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
-            "\noneLoop.low() returnerer: " + oneLoop.low + ' og useRegex.low() returnerer: ' + useRegex.low()
+            "\noneLoop.low() returnerer: " + oneLoop.low(test) + ' og useRegex.low() returnerer: ' + useRegex.low()
         );
 
         assert(
             oneLoop.high(test) === useRegex.high(),
             fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
-            "\noneLoop.high() returnerer: " + oneLoop.high + ' og useRegex.high() returnerer: ' + useRegex.high()
+            "\noneLoop.high() returnerer: " + oneLoop.high(test) + ' og useRegex.high() returnerer: ' + useRegex.high()
         );
          
     }
