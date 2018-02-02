@@ -1,15 +1,23 @@
 function OneLoopSolution(arr, name) {
 
     if (OneLoopSolution.cache[arr]) {
-       // console.log('hello from cache')
-       return OneLoopSolution.cache[arr][name];
+        console.log('hello from cache')
+        return OneLoopSolution.cache[arr][name];
     }
-    //  console.log('looping...')
+    console.log('calculation...')
 
     var pairs = [0, 0], // for arr : [1,2,2,4,1] => [2,1]
         pairCount = 0, // for arr : [1,2,2,4,1] => 2
         sum = 0,
-        obj = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0,6: 0 }; //public , for arr : [1,2,2,4,1] => { 1: 2, 2: 4, 3: 0, 4: 4, 5: 0, 6: 0 }
+        obj = {
+            1: 0,
+            2: 0,
+            3: 0,
+            4: 0,
+            5: 0,
+            6: 0,
+        }; //public , for arr : [1,2,2,4,1] => { 1: 2, 2: 4, 3: 0, 4: 4, 5: 0, 6: 0 }
+        
 
     for (let a of arr) {
         sum += a;
@@ -19,6 +27,7 @@ function OneLoopSolution(arr, name) {
         }
     }
 
+    obj['___________'] = "--------------------------------------";
     obj.twoKind = Math.max(pairs[0], pairs[1]) * 2; // for arr : [1,2,2,4,1] => 4
     obj.threeKind = pairs[0] * 3 <= obj[pairs[0]] ? pairs[0] * 3 : pairs[1] * 3 <= obj[pairs[1]] ? pairs[1] * 3 : 0;
     // Hvis der er 3 ens, må det være af tallet pairs[0] eller pairs[1]. Check da om 3 gange en disse findes i obj
@@ -31,24 +40,22 @@ function OneLoopSolution(arr, name) {
     obj.high = !obj[1] && !obj.twoKind ? 20 : 0;
     obj.yatzy = obj.fourKind * 5 / 4 === sum ? 50 : 0;
     obj.chance = sum;
+    obj._pairs = pairs;
+    obj._pairCount = pairCount;
 
-    OneLoopSolution.clearCache(); // Nye terninger
-    OneLoopSolution.cache[arr] = obj;    
+    OneLoopSolution.getSetCache(); // Nye terninger
+    OneLoopSolution.cache[arr] = obj;
     return obj[name];
 }
 
-(OneLoopSolution.clearCache = function () { 
+(OneLoopSolution.getSetCache = function () {
     OneLoopSolution.cache = {};
 })();
-// Jeg antager at functionen vil blive kaldt flere gange med det samme array som input. 
-// Derfor tilføjer jeg et cache object på funktionen. Således:
 
-// console.log(ettere([1,1,2,2,1])) // looping... 3
-// console.log(fullHouse([1,1,2,2,1])) // hello from cache... 7
+// Jeg opretter et cache object på funktionen, 
+// i tilfælde af at skulle kalde flere funktioner med samme array som input.
+// Memoization Pattern
 
-// console.log(yatzy([1,2,3,4,5])) // looping... 0
-
-// Implementeret som i 'Javascript Patterns' af Stoyan Stefanov s. 76 - 'Function Properties - A Memoization Pattern'
 
 function ettere(arr) {
     return OneLoopSolution(arr, 1)
@@ -95,30 +102,32 @@ function threeKind(arr) {
 }
 
 function fourKind(arr) {
-    return OneLoopSolution(arr, 'fourKind')
+    var o = new OneLoopSolution(arr)
+    var hello = OneLoopSolution(arr, 'fourKind')
+    console.log(hello)
+    //return o._pairs[0] * 4 <= o[o._pairs[0]] ? o._pairs[0] * 4 : 0;
 }
 
 function twoPairs(arr) {
-    return OneLoopSolution(arr, 'twoPairs')
+    var o = new OneLoopSolution(arr)
+    return ((o.pairs[0] + o.pairs[1]) * 2) * (o.pairCount - 1);
 }
 
 function fullHouse(arr) {
-    return OneLoopSolution(arr, 'fullHouse')
+    var o = new OneLoopSolution(arr)
+    return threeKind(arr) && twoPairs(arr) ? sum : 0;
 }
 
 function chance(arr) {
-    return OneLoopSolution(arr, 'chance')
+    var obj = new OneLoopSolution(arr)
+    return obj.chance = sum;
 }
 
+var arr = [2, 2, 3, 3, 3];
+console.log(
+   
+    fourKind(
+        arr
+    )
+)
 
-module.exports = {
-    twoKind,
-    yatzy,
-    fourKind,
-    threeKind,
-    twoPairs,
-    fullHouse,
-    chance,
-    low,
-    high
-}
