@@ -4,7 +4,7 @@ var UseRegexSolution = require('./useRegex.js');
 
 runTest(true);
 
-function runTest(clear, size = 1000000) { // 1 million tager ca 16 sek - 10 millioner giver 'JavaScript heap out of memory'
+function runTest(clear, size = 100000) { // 1 million tager ca 16 sek - 10 millioner giver 'JavaScript heap out of memory'
    
     console.time('t');
 
@@ -44,12 +44,11 @@ function runTest(clear, size = 1000000) { // 1 million tager ca 16 sek - 10 mill
         
         /*
             Test af UseRegexSolution vs OneLoopSolution
-            Bør jeg loope over disse i stedet?
 
         */
         assert(
             oneLoop.fullHouse(test) === useRegex.fullHouse(),
-            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] + // PUT ME IN A FUNCTION
             "\noneLoop.fullHouse() returnerer: " + oneLoop.fullHouse + ' og useRegex.fullHouse() returnerer: ' + useRegex.fullHouse()
         );
       

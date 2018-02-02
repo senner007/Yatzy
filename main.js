@@ -1,3 +1,4 @@
+"use strict";
 function OneLoopSolution(arr, name) {
 
     if (OneLoopSolution.cache[arr]) {
