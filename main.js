@@ -40,12 +40,11 @@ function OneLoopSolution(arr, name) {
 (OneLoopSolution.clearCache = function () { 
     OneLoopSolution.cache = {};
 })();
-// Jeg antager at functionen vil blive kaldt flere gange med det samme array som input. 
-// Derfor tilføjer jeg et cache object på funktionen. Således:
+// Jeg antager at functionen, med denne struktur, vil blive kaldt flere gange med det samme array som input. 
+// Derfor tilføjes et cache object på funktionen. Således:
 
 // console.log(ettere([1,1,2,2,1])) // looping... 3
 // console.log(fullHouse([1,1,2,2,1])) // hello from cache... 7
-
 // console.log(yatzy([1,2,3,4,5])) // looping... 0
 
 // Implementeret som i 'Javascript Patterns' af Stoyan Stefanov s. 76 - 'Function Properties - A Memoization Pattern'
