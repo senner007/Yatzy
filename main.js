@@ -1,16 +1,17 @@
 function OneLoopSolution(arr, name) {
 
     if (OneLoopSolution.cache[arr]) {
-       // console.log('hello from cache')
-       return OneLoopSolution.cache[arr][name];
+    //    console.log('hello from cache')
+        return OneLoopSolution.cache[arr][name];
     }
-    //  console.log('looping...')
+    // console.log('looping...')
 
     var pairs = [0, 0], // for arr : [1,2,2,4,1] => [2,1]
         pairCount = 0, // for arr : [1,2,2,4,1] => 2
         sum = 0,
         obj = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0,6: 0 }; //public , for arr : [1,2,2,4,1] => { 1: 2, 2: 4, 3: 0, 4: 4, 5: 0, 6: 0 }
 
+        
     for (let a of arr) {
         sum += a;
         obj[a] += a;
@@ -19,13 +20,15 @@ function OneLoopSolution(arr, name) {
         }
     }
 
+    // Betingelserne kunne også placeres i funktionerne
     obj.twoKind = Math.max(pairs[0], pairs[1]) * 2; // for arr : [1,2,2,4,1] => 4
     obj.threeKind = pairs[0] * 3 <= obj[pairs[0]] ? pairs[0] * 3 : pairs[1] * 3 <= obj[pairs[1]] ? pairs[1] * 3 : 0;
     // Hvis der er 3 ens, må det være af tallet pairs[0] eller pairs[1]. Check da om 3 gange en disse findes i obj
     obj.fourKind = pairs[0] * 4 <= obj[pairs[0]] ? pairs[0] * 4 : 0;
-    // Samme logik som ved 3 Ens
-    obj.twoPairs = ((pairs[0] + pairs[1]) * 2) * (pairCount - 1); // for arr : [1,2,2,4,1] => 6
-    // ret så den ikke returnerer -0 ved ingen par? -0 === 0 : true?  - Object.is(-0, 0); : false
+    // Samme logik, men der kan kun være 1 par
+    obj.twoPairs = ((pairs[0] + pairs[1]) * 2) * (pairCount - 1); // for arr : [1,2,2,4,1] => 6 
+    // pairCount sikrer at 0 returneres ved ingen eller 1 par.
+    // ret så den ikke returnerer -0 ved ingen par? -0 === 0 => true(?!) - Object.is(-0, 0) => false
     obj.fullHouse = obj.threeKind && obj.twoPairs ? sum : 0;
     obj.low = !obj[6] && !obj.twoKind ? 15 : 0;
     obj.high = !obj[1] && !obj.twoKind ? 20 : 0;
@@ -40,14 +43,16 @@ function OneLoopSolution(arr, name) {
 (OneLoopSolution.clearCache = function () { 
     OneLoopSolution.cache = {};
 })();
-// Jeg antager at functionen, med denne struktur, vil blive kaldt flere gange med det samme array som input. 
-// Derfor tilføjes et cache object på funktionen. Således:
+// Jeg antager at funktionen, med denne struktur, vil blive kaldt flere gange med det samme array som input. 
+// Derfor tilføjes et cache object på funktionen. Dette er naturligvis tiltænkt større datamængder/beregninger.
 
 // console.log(ettere([1,1,2,2,1])) // looping... 3
 // console.log(fullHouse([1,1,2,2,1])) // hello from cache... 7
 // console.log(yatzy([1,2,3,4,5])) // looping... 0
 
 // Implementeret som i 'Javascript Patterns' af Stoyan Stefanov s. 76 - 'Function Properties - A Memoization Pattern'
+
+
 
 function ettere(arr) {
     return OneLoopSolution(arr, 1)
