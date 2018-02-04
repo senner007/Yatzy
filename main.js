@@ -10,7 +10,7 @@ function getObject(arr, name) {
     var pairs = [0, 0], // for arr : [1,2,2,4,1] => [2,1]
         pairCount = 0, // for arr : [1,2,2,4,1] => 2
         sum = 0,
-        obj = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0,6: 0 }; //public , for arr : [1,2,2,4,1] => { 1: 2, 2: 4, 3: 0, 4: 4, 5: 0, 6: 0 }
+        obj = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 }; //public , for arr : [1,2,2,4,1] => { 1: 2, 2: 4, 3: 0, 4: 4, 5: 0, 6: 0 }
 
     for (let a of arr) {
         sum += a;
