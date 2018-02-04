@@ -28,7 +28,8 @@ function getObject(arr, name) {
     // Samme logik, men der kan kun være 1 par
     obj.twoPairs = ((pairs[0] + pairs[1]) * 2) * (pairCount - 1); // for arr : [1,2,2,4,1] => 6 
     // pairCount sikrer at 0 returneres ved ingen eller 1 par. 
-    // ret så den ikke returnerer -0 ved ingen par? -0 === 0 => true(?!) - Object.is(-0, 0) => false , løsn. Number(!!pairs[1])
+    // ret så den ikke returnerer -0 ved ingen par? -0 === 0 => true(?!) - Object.is(-0, 0) => false, 
+    // løsn : erstat (pairCount - 1) med  Number(!!pairs[1])
     obj.fullHouse = obj.threeKind && pairCount === 2 ? sum : 0;
     obj.low = !pairCount && sum === 15 ? 15 : 0;
     obj.high = !pairCount && sum === 20 ? 20 : 0;
