@@ -45,7 +45,7 @@ function getObject(arr, name) {
 //     getObject.cache = {};
 // })();
 // Jeg antager at funktionen, med denne struktur, vil blive kaldt flere gange med det samme array som input. 
-// Derfor tilføjes et cache object på funktionen. Dette er naturligvis tiltænkt større datamængder/beregninger.
+// Derfor kan der tilføjes et cache object på funktionen. Dette er naturligvis tiltænkt større datamængder/beregninger.
 
 // console.log(ettere([1,1,2,2,1])) // looping... 3
 // console.log(fullHouse([1,1,2,2,1])) // hello from cache... 7
