@@ -20,7 +20,7 @@ function getObject(arr, name) {
         }
     }
 
-    // Betingelser kunne også placeres i funktionerne
+    // Betingelser kan også placeres i funktionerne
     obj.twoKind = Math.max(pairs[0], pairs[1]) * 2; // for arr : [1,2,2,4,1] => 4
     obj.threeKind = pairs[0] * 3 <= obj[pairs[0]] ? pairs[0] * 3 : pairs[1] * 3 <= obj[pairs[1]] ? pairs[1] * 3 : 0;
     // Hvis der er 3 ens, må det være af tallet pairs[0] eller pairs[1]. Check da om 3 gange en disse findes i obj
@@ -35,7 +35,7 @@ function getObject(arr, name) {
     obj.high = !pairCount && sum === 20 ? 20 : 0;
     obj.yatzy = obj.fourKind * 5 / 4 === sum ? 50 : 0;
     obj.chance = sum;
-
+    
     // getObject.clearCache(); // Nye terninger
     // getObject.cache[arr] = obj;    
     return obj[name];
