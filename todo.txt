@@ -1,3 +1,4 @@
 - omskriv funktionnavne som specificeret i opg. formuleringen
 - bestem om Memoization pattern skal kommenteres ud/ind
 - Skriv test
+- yatzy giver 50 plus øjnene
