@@ -25,10 +25,7 @@ function UseRegexSolution (arr) {
 
     function twoKind() {
         if (!_regexArr) return 0;
-        var pairs = _regexArr.map(function (m) { // REMOVE ME !!
-            return m[0];
-        })
-        return Math.max(...pairs) * 2;
+        return _regexArr[_regexArr.length-1][0] * 2;
     }
 
     function chance() {

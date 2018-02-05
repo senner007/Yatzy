@@ -164,14 +164,14 @@ function chance(arr) {
 }
 
 
-// module.exports = {
-//     twoKind,
-//     yatzy,
-//     fourKind,
-//     threeKind,
-//     twoPairs,
-//     fullHouse,
-//     chance,
-//     low,
-//     high
-// }
+module.exports = {
+    twoKind,
+    yatzy,
+    fourKind,
+    threeKind,
+    twoPairs,
+    fullHouse,
+    chance,
+    low,
+    high
+}
