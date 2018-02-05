@@ -1,4 +1,52 @@
 "use strict";
+
+// Eksamensopgave 2 Niels Gregersen Programmering s. 5/2 2018
+// I denne opgave skal du lave funktioner, som kan beregne point i et Yatzy - spil.Hvis du ikke kender reglerne til Yatzy kan du se dem p� https://da.wikipedia.org/wiki/Yatzy Vi bruger standardreglerne som beskrevet i sektionen Regler.
+
+// Du skal lave en funktion for hver mulig kombinationer(ettere, toere, ..., chance, yatzy).Funktionen skal tage et array med fem terninger(alts� tal fra 1 til 6) som parameter og returnere, hvor mange point den givne kombination af terninger giver ved den valgte mulighed.
+
+// Eksempelvis giver terningerne 1 3 5 3 1 seks point ved treere(der er 2 treere, derfor 2 x 3 point), men 0 point ved Fire ens(for der er ikke fire ens).
+
+// Nedenst�ende kode viser, hvordan funktionen for ettere kan laves.
+
+// function ettere(terninger) {
+//         let point = 0;
+//         for (let i = 0; i < 5; i++) {
+//             if (terninger[i] == 1) { // Det er en etter
+//                 point += 1; // Hver etter giver �t point
+//             }
+//         }
+//         return point;
+//     }
+// console.log(ettere([1, 2, 3, 4, 5]));
+// console.log(ettere([1, 2, 1, 2, 1]));
+// console.log(ettere([5, 5, 5, 5, 5]));
+
+// Lav en funktion til hver af mulighederne beskrevet i reglerne, alts�:
+
+// Ettere
+// Toere
+// Treere
+// Firere
+// Femmere
+// Seksere
+// Et par
+// To par
+// Tre ens
+// Fire ens
+// Lav
+// H�j
+// Fuldt hus
+// Chance
+// Yatzy
+// Hvis der er nogle af funktionerne, du ikke kan lave helt f�rdige, s� lav s� meget af dem, som du kan.S� taler vi om resten til eksamen.
+
+//     N�r du skriver din kode, s� t�nk over:
+
+// At koden skal v�re let at l�se og forst� for andre
+// Om du kan genbruge kode og p� den m�de skrive mindre kode
+// Hvordan du vil teste, at funktionerne er korrekte
+
 function getObject(arr, name) {
 
     // if (getObject.cache[arr]) {
@@ -82,7 +130,6 @@ function seksere(arr) {
 function low(arr) {
     return getObject(arr, 'low')
 }
-
 
 function high(arr) {
     return getObject(arr, 'high')

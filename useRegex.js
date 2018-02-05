@@ -20,7 +20,7 @@ function UseRegexSolution (arr) {
 
     function yatzy() {
         if (!_regexArr) return 0;
-        return _regexArr[0].length === 5 ? 50 : 0
+        return _regexArr[0].length === 5 ? 50 + _regexArr[0][0] * 5 : 0
     }
 
     function twoKind() {
