@@ -81,7 +81,7 @@ function getObject(arr, name) {
     obj.fullHouse = obj.threeKind && pairCount === 2 ? sum : 0;
     obj.low = !pairCount && sum === 15 ? 15 : 0;
     obj.high = !pairCount && sum === 20 ? 20 : 0;
-    obj.yatzy = obj.fourKind * 5 / 4 === sum ? 50 + obj.fourKind * 5 / 4 : 0;
+    obj.yatzy = obj.fourKind * 5 / 4 === sum ? 50 + 5 * arr[0] : 0;
     obj.chance = sum;
     
     // getObject.clearCache(); // Nye terninger
