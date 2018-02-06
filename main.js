@@ -62,7 +62,9 @@ function getObject(arr, name) {
 
     for (let a of arr) {
         sum += a;
-        obj[a] += a;
+        obj[a] += a;        // jeg læser fra og skriver direkte til objektet, 
+                            //idet at nummer indexeret object gerne skulle være lige så hurtig som et array
+                            //https://www.smashingmagazine.com/2012/11/writing-fast-memory-efficient-javascript/
         if (obj[a] / a === 2) { // Hvis der er 2 forekomster af tallet
             pairs[pairCount++] = a;
         }
@@ -81,7 +83,7 @@ function getObject(arr, name) {
     obj.fullHouse = obj.threeKind && pairCount === 2 ? sum : 0;
     obj.low = !pairCount && sum === 15 ? 15 : 0;
     obj.high = !pairCount && sum === 20 ? 20 : 0;
-    obj.yatzy = obj.fourKind * 5 / 4 === sum ? 50 + 5 * arr[0] : 0;
+    obj.yatzy = obj.fourKind * 5 / 4 === sum ? 50 + sum : 0;
     obj.chance = sum;
     
     // getObject.clearCache(); // Nye terninger
@@ -164,14 +166,14 @@ function chance(arr) {
 }
 
 
-module.exports = {
-    twoKind,
-    yatzy,
-    fourKind,
-    threeKind,
-    twoPairs,
-    fullHouse,
-    chance,
-    low,
-    high
-}
+// module.exports = {
+//     twoKind,
+//     yatzy,
+//     fourKind,
+//     threeKind,
+//     twoPairs,
+//     fullHouse,
+//     chance,
+//     low,
+//     high
+// }
