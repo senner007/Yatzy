@@ -1,10 +1,12 @@
 var OneLoopSolution = require('./main.js');
-// var ArrayInputFunctions = require('./functions.js');
+var ArrayInputFunctions = require('./functions.js');
 var UseRegexSolution = require('./useRegex.js');
+
+
 
 runTest(true);
 
-function runTest(clear, size = 500000) { // 1 million tager ca 16 sek - 10 millioner giver 'JavaScript heap out of memory'
+function runTest(clear, size = 1000000) { // 1 million tager ca 16 sek - 10 millioner giver 'JavaScript heap out of memory'
    
     console.time('t');
 
@@ -35,15 +37,15 @@ function runTest(clear, size = 500000) { // 1 million tager ca 16 sek - 10 milli
     }
 
     var fejlBesked = ["Et input af: ", " af type ", " returnerer ikke samme output"];
-
+    
 
    // let func = new ArrayInputFunctions(); // Parasitic constructor/ Factory - ('new' ikke nødvendig)
+    var func = ArrayInputFunctions()
 
     for (let test of randomArray) {
     
 
         let useRegex  = new UseRegexSolution(test) 
-
         let oneLoop = OneLoopSolution; 
         
      
@@ -93,6 +95,7 @@ function runTest(clear, size = 500000) { // 1 million tager ca 16 sek - 10 milli
             fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
             "\noneLoop.chance() returnerer: " + oneLoop.chance(test) + ' og useRegex.chance() returnerer: ' + useRegex.chance()
         );
+    
         assert(
             oneLoop.low(test) === useRegex.low(),
             fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
@@ -104,6 +107,59 @@ function runTest(clear, size = 500000) { // 1 million tager ca 16 sek - 10 milli
             fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
             "\noneLoop.high() returnerer: " + oneLoop.high(test) + ' og useRegex.high() returnerer: ' + useRegex.high()
         );
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        assert(
+            oneLoop.ettere(test) === func._ettere(test),
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            "\noneLoop.ettere(test) returnerer: " + oneLoop.ettere(test) + ' og func._ettere(test) returnerer: ' + func._ettere(test)
+        );
+
+        assert(
+            oneLoop.ettere(test) === func._ettere_2(test),
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            "\noneLoop.ettere(test) returnerer: " + oneLoop.ettere(test) + ' og func._ettere_2(test) returnerer: ' + func._ettere_2(test)
+        );
+
+        assert(
+            oneLoop.toere(test) === func._toere(test),
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            "\noneLoop.toere(test) returnerer: " + oneLoop.toere(test) + ' og func._toere(test) returnerer: ' + func._toere(test)
+        );
+
+        assert(
+            oneLoop.toere(test) === func._toere_2(test),
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            "\noneLoop.toere(test) returnerer: " + oneLoop.toere(test) + ' og func._toere_2(test) returnerer: ' + func._toere_2(test)
+        );
+
+        assert(
+            oneLoop.twoPairs(test) === func._twoPairs(test),
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            "\noneLoop.twoPairs(test) returnerer: " + oneLoop.twoPairs(test) + ' og func._twoPairs(test) returnerer: ' + func._twoPairs(test)
+        );
+
+        assert(
+            oneLoop.twoPairs(test) === func._twoPairs_2(test),
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            "\noneLoop.twoPairs(test) returnerer: " + oneLoop.twoPairs(test) + ' og func._twoPairs_2(test) returnerer: ' + func._twoPairs_2(test)
+        );
+
+      
+        assert(
+            oneLoop.yatzy(test) === func._yatzy(test),
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            "\noneLoop.yatzy(test) returnerer: " + oneLoop.yatzy(test) + ' og func._yatzy(test) returnerer: ' + func._yatzy(test)
+        );
+
+        assert(
+            oneLoop.yatzy(test) === func._yatzy_2(test),
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            "\noneLoop.yatzy(test) returnerer: " + oneLoop.yatzy(test) + ' og func._yatzy_2(test) returnerer: ' + func._yatzy_2(test)
+        );
+
          
     }
     

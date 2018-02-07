@@ -41,6 +41,7 @@ function UseRegexSolution (arr) {
         if (!_regexArr) return 0;
         return ('' + Math.max(..._regexArr)).length >= 3 ? ('' + Math.max(..._regexArr))[0] * 3 : 0;
     }
+    
 
  
     function twoPairs() {

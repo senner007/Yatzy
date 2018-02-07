@@ -46,6 +46,7 @@
 // At koden skal v�re let at l�se og forst� for andre
 // Om du kan genbruge kode og p� den m�de skrive mindre kode
 // Hvordan du vil teste, at funktionerne er korrekte
+ 
 
 function getObject(arr, name) {
 
@@ -62,9 +63,9 @@ function getObject(arr, name) {
 
     for (let a of arr) {
         sum += a;
-        obj[a] += a;        // jeg læser fra og skriver direkte til objektet, 
-                            //idet at nummer indexeret object gerne skulle være lige så hurtig som et array
-                            //https://www.smashingmagazine.com/2012/11/writing-fast-memory-efficient-javascript/
+        obj[a] += a;        // jeg skriver og læser direkte til og fra objektet, 
+                            // idet at nummer indexeret objekter gerne skulle være lige så hurtige som et array
+                            // https://www.smashingmagazine.com/2012/11/writing-fast-memory-efficient-javascript/
         if (obj[a] / a === 2) { // Hvis der er 2 forekomster af tallet
             pairs[pairCount++] = a;
         }
@@ -72,18 +73,21 @@ function getObject(arr, name) {
 
     // Betingelser kan også placeres i funktionerne
     obj.twoKind = Math.max(pairs[0], pairs[1]) * 2; // for arr : [1,2,2,4,1] => 4
+    //alternativ : obj.twoKind = pairs[0] - pairs[1] > 0 ? pairs[0] * 2 : pairs[1] * 2;
     obj.threeKind = pairs[0] * 3 <= obj[pairs[0]] ? pairs[0] * 3 : pairs[1] * 3 <= obj[pairs[1]] ? pairs[1] * 3 : 0;
     // Hvis der er 3 ens, må det være af tallet pairs[0] eller pairs[1]. Check da om 3 gange en disse findes i obj
     obj.fourKind = pairs[0] * 4 <= obj[pairs[0]] ? pairs[0] * 4 : 0;
     // Samme logik, men der kan kun være 1 par
+    // Jeg antager, at der kun findes et par ved fire ens
     obj.twoPairs = ((pairs[0] + pairs[1]) * 2) * (pairCount - 1); // for arr : [1,2,2,4,1] => 6 
     // pairCount sikrer at 0 returneres ved ingen eller 1 par. 
     // ret så den ikke returnerer -0 ved ingen par? -0 === 0 => true(?!) - Object.is(-0, 0) => false, 
     // løsn : erstat (pairCount - 1) med  Number(!!pairs[1])
-    obj.fullHouse = obj.threeKind && pairCount === 2 ? sum : 0;
-    obj.low = !pairCount && sum === 15 ? 15 : 0;
-    obj.high = !pairCount && sum === 20 ? 20 : 0;
-    obj.yatzy = obj.fourKind * 5 / 4 === sum ? 50 + sum : 0;
+    obj.fullHouse = obj.threeKind && pairCount === 2 ? sum : 0; 
+    // Her skulle funktionen threeKind kaldes, hvis betingelserne var placeret i funktionerne
+    obj.low = !pairCount && sum === 15 ? 15 : 0; // Jeg antager at terningerne 12345 giver et resultat af 15
+    obj.high = !pairCount && sum === 20 ? 20 : 0; // Jeg antager at terningerne 23456 giver et resultat af 20
+    obj.yatzy = obj.fourKind * 5 / 4 === sum ? 50 + sum : 0; // Jeg antager at yatzy defineres som summen af fem ens plus 50
     obj.chance = sum;
     
     // getObject.clearCache(); // Nye terninger
@@ -98,7 +102,7 @@ function getObject(arr, name) {
 // Derfor kan der tilføjes et cache object på funktionen. Dette er naturligvis tiltænkt større datamængder/beregninger.
 
 // console.log(ettere([1,1,2,2,1])) // looping... 3
-// console.log(fullHouse([1,1,2,2,1])) // hello from cache... 7
+// console.log(fullHouse([1,1,2,2,1])) // hello from cache... 7 (samme array)
 // console.log(yatzy([1,2,3,4,5])) // looping... 0
 
 // Implementeret som i 'Javascript Patterns' af Stoyan Stefanov s. 76 - 'Function Properties - A Memoization Pattern'
@@ -166,14 +170,64 @@ function chance(arr) {
 }
 
 
-// module.exports = {
-//     twoKind,
-//     yatzy,
-//     fourKind,
-//     threeKind,
-//     twoPairs,
-//     fullHouse,
-//     chance,
-//     low,
-//     high
+// Test af kode: 
+
+// For at teste koden kan man skrive flere løsninger på ovenstående problem og derefter sammenlige resultatet. 
+// Det kan eksempelvis gøres ved at tilfældighedsgenerere et antal arrays, 
+// og derpå sammenligner resultater med disse som input på automatiseret vis.  
+
+// Oprettelse af 1 million tilfældige yatzy arrays :
+
+// var randomArray = (function (arrayLength, span, size) { 
+//     var arr = [],
+//         arrSize = [];
+
+//     for (let i = 0; i < size; i++) {
+//         for (let ii = 0; ii < arrayLength; ii++) {
+//             arr.push(Math.floor((Math.random() * span[1]) + 1));
+//         }
+//         arrSize.push(arr);
+//         arr = [];
+//     }
+//     return arrSize;
+// }(5, [1, 6], 1000000))
+
+// Eksempel på en assert function : 
+
+// function assert(condition, message) {
+//     if (!condition) {
+//         throw message;
+//     }
 // }
+
+// Derpå selve testen :
+
+// assert(
+//     oneLoop.fullHouse(test) === useRegex.fullHouse(),
+//     fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] + 
+//     "\noneLoop.fullHouse() returnerer: " + oneLoop.fullHouse(test) + ' og useRegex.fullHouse() returnerer: ' + useRegex.fullHouse()
+// );
+
+// Her tester jeg ovenstående løsning med en anden.
+
+// Denne måde at teste på lader sig ikke altid gøre, og den er ikke sikker, da man kan have tænkt forkert i begge løsninger.
+// En anden måde at teste på, er ved at teste et specifikt input mod et forventet output.
+
+
+module.exports = {
+    twoKind,
+    yatzy,
+    fourKind,
+    threeKind,
+    twoPairs,
+    fullHouse,
+    chance,
+    low,
+    high,
+    ettere,
+    toere,
+    treere,
+    firere,
+    femmere,
+    seksere
+}
