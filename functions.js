@@ -129,6 +129,14 @@ function ArrayInputFunctions () {
         return found || 0;
     }
 
+   
+
+    function _threeKind_2(terninger) {
+        var clone = terninger.slice(0)
+        var regexResult = clone.sort().join('').match(/([1-6])\1+\1+/g);
+        return regexResult ? regexResult[0][0] * 3 : 0;
+    }
+
 
     function _fourKind(arr) {
         var counter = 0
@@ -227,6 +235,7 @@ function ArrayInputFunctions () {
         _yatzy_2,
         _fourKind,
         _threeKind,
+        _threeKind_2,
         _twoPairs,
         _twoPairs_2,
         _fullHouse,

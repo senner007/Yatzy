@@ -136,6 +136,18 @@ function runTest(clear, size = 1000000) { // 1 million tager ca 16 sek - 10 mill
         );
 
         assert(
+            oneLoop.threeKind(test) === func._threeKind(test),
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            "\noneLoop.threeKind(test) returnerer: " + oneLoop.threeKind(test) + ' og func._threeKind(test) returnerer: ' + func._threeKind(test)
+        );
+
+        assert(
+            oneLoop.threeKind(test) === func._threeKind_2(test),
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            "\noneLoop.threeKind(test) returnerer: " + oneLoop.threeKind(test) + ' og func._threeKind_2(test) returnerer: ' + func._threeKind_2(test)
+        );
+
+        assert(
             oneLoop.twoPairs(test) === func._twoPairs(test),
             fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
             "\noneLoop.twoPairs(test) returnerer: " + oneLoop.twoPairs(test) + ' og func._twoPairs(test) returnerer: ' + func._twoPairs(test)

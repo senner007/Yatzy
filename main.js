@@ -174,7 +174,7 @@ function chance(arr) {
 
 // For at teste koden kan man skrive flere løsninger på ovenstående problem og derefter sammenlige resultatet. 
 // Det kan eksempelvis gøres ved at tilfældighedsgenerere et antal arrays, 
-// og derpå sammenligner resultater med disse som input på automatiseret vis.  
+// og derpå på automatiseret vis sammenligne resultater med disse som input.
 
 // Oprettelse af 1 million tilfældige yatzy arrays :
 
