@@ -159,6 +159,19 @@ function runTest(clear, size = 1000000) { // 1 million tager ca 16 sek - 10 mill
             "\noneLoop.twoPairs(test) returnerer: " + oneLoop.twoPairs(test) + ' og func._twoPairs_2(test) returnerer: ' + func._twoPairs_2(test)
         );
 
+        assert(
+            oneLoop.twoPairs(test) === func._twoPairs_3(test),
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            "\noneLoop.twoPairs(test) returnerer: " + oneLoop.twoPairs(test) + ' og func._twoPairs_3(test) returnerer: ' + func._twoPairs_3(test)
+        );
+
+
+        assert(
+            oneLoop.twoPairs(test) === func._twoPairs_4(test),
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            "\noneLoop.twoPairs(test) returnerer: " + oneLoop.twoPairs(test) + ' og func._twoPairs_4(test) returnerer: ' + func._twoPairs_4(test)
+        );
+
       
         assert(
             oneLoop.yatzy(test) === func._yatzy(test),
@@ -172,6 +185,36 @@ function runTest(clear, size = 1000000) { // 1 million tager ca 16 sek - 10 mill
             "\noneLoop.yatzy(test) returnerer: " + oneLoop.yatzy(test) + ' og func._yatzy_2(test) returnerer: ' + func._yatzy_2(test)
         );
 
+        assert(
+            oneLoop.fullHouse(test) === func._fullHouse(test),
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            "\noneLoop.fullHouse(test) returnerer: " + oneLoop.fullHouse(test) + ' og func._fullHouse(test) returnerer: ' + func._fullHouse(test)
+        );
+
+        assert(
+            oneLoop.fullHouse(test) === func._fullHouse_2(test),
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            "\noneLoop.fullHouse(test) returnerer: " + oneLoop.fullHouse(test) + ' og func._fullHouse_2(test) returnerer: ' + func._fullHouse_2(test)
+        );
+
+
+        assert(
+            oneLoop.fullHouse(test) === func._fullHouse_3(test),
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            "\noneLoop.fullHouse(test) returnerer: " + oneLoop.fullHouse(test) + ' og func._fullHouse_3(test) returnerer: ' + func._fullHouse_3(test)
+        );
+
+        assert(
+            oneLoop.fullHouse(test) === func._fullHouse_4(test),
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            "\noneLoop.fullHouse(test) returnerer: " + oneLoop.fullHouse(test) + ' og func._fullHouse_4(test) returnerer: ' + func._fullHouse_4(test)
+        );
+
+        assert(
+            oneLoop.fullHouse(test) === func._fullHouse_5(test),
+            fejlBesked[0] + test + fejlBesked[1] + (typeof test) + fejlBesked[2] +
+            "\noneLoop.fullHouse(test) returnerer: " + oneLoop.fullHouse(test) + ' og func._fullHouse_5(test) returnerer: ' + func._fullHouse_5(test)
+        );
          
     }
     

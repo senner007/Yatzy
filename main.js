@@ -63,8 +63,8 @@ function getObject(arr, name) {
 
     for (let a of arr) {
         sum += a;
-        obj[a] += a;        // jeg skriver og læser direkte til og fra objektet, 
-                            // idet at nummer indexeret objekter gerne skulle være lige så hurtige som et array
+        obj[a] += a;        
+                            // at skrive og læse fra et tal indexeret objekt skulle gerne være lige så hurtigt som ved brug af et array
                             // https://www.smashingmagazine.com/2012/11/writing-fast-memory-efficient-javascript/
         if (obj[a] / a === 2) { // Hvis der er 2 forekomster af tallet
             pairs[pairCount++] = a;
