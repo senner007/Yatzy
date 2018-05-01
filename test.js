@@ -6,7 +6,7 @@ var UseRegexSolution = require('./useRegex.js');
 
 runTest(true);
 
-function runTest(clear, size = 1000000) { // 1 million tager ca 16 sek - 10 millioner giver 'JavaScript heap out of memory'
+function runTest(clear) {
    
     console.time('t');
 
@@ -14,19 +14,24 @@ function runTest(clear, size = 1000000) { // 1 million tager ca 16 sek - 10 mill
         console.clear();
     }
 
-    var randomArray = (function (arrayLength, span, size) { // lav en array med size antal tilfældige arrays 
-        var arr = [],
-        arrSize = [];
+    var testArray = (function () { // lav en array med size antal tilfældige arrays 
 
-        for (let i = 0; i < size; i++) {
-            for (let ii = 0; ii < arrayLength; ii++) {
-                arr.push(Math.floor((Math.random() * span[1]) + 1));
-            }
-            arrSize.push(arr);
-            arr = [];
-        }
-        return arrSize;
-    }(5, [1, 6], size))
+        var pos = [1, 2, 3, 4, 5, 6];
+        var total = [];
+
+        pos.forEach(function (pos1) {
+            pos.forEach(function (pos2) {
+                pos.forEach(function (pos3) {
+                    pos.forEach(function (pos4) {
+                        pos.forEach(function (pos5) {
+                            total.push([pos1, pos2, pos3, pos4, pos5]);
+                        });
+                    });
+                });
+            });
+        });
+        return total;
+    }([1, 2, 3, 4, 5, 6]));
 
 
 
@@ -42,7 +47,7 @@ function runTest(clear, size = 1000000) { // 1 million tager ca 16 sek - 10 mill
    // let func = new ArrayInputFunctions(); // Parasitic constructor/ Factory - ('new' ikke nødvendig)
     var func = ArrayInputFunctions()
 
-    for (let test of randomArray) {
+    for (let test of testArray) {
     
 
         let useRegex  = new UseRegexSolution(test) 
