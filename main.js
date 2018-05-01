@@ -1,53 +1,5 @@
 "use strict";
 
-// Eksamensopgave 2 Niels Gregersen Programmering s. 5/2 2018
-// I denne opgave skal du lave funktioner, som kan beregne point i et Yatzy - spil.Hvis du ikke kender reglerne til Yatzy kan du se dem p� https://da.wikipedia.org/wiki/Yatzy Vi bruger standardreglerne som beskrevet i sektionen Regler.
-
-// Du skal lave en funktion for hver mulig kombinationer(ettere, toere, ..., chance, yatzy).Funktionen skal tage et array med fem terninger(alts� tal fra 1 til 6) som parameter og returnere, hvor mange point den givne kombination af terninger giver ved den valgte mulighed.
-
-// Eksempelvis giver terningerne 1 3 5 3 1 seks point ved treere(der er 2 treere, derfor 2 x 3 point), men 0 point ved Fire ens(for der er ikke fire ens).
-
-// Nedenst�ende kode viser, hvordan funktionen for ettere kan laves.
-
-// function ettere(terninger) {
-//         let point = 0;
-//         for (let i = 0; i < 5; i++) {
-//             if (terninger[i] == 1) { // Det er en etter
-//                 point += 1; // Hver etter giver �t point
-//             }
-//         }
-//         return point;
-//     }
-// console.log(ettere([1, 2, 3, 4, 5]));
-// console.log(ettere([1, 2, 1, 2, 1]));
-// console.log(ettere([5, 5, 5, 5, 5]));
-
-// Lav en funktion til hver af mulighederne beskrevet i reglerne, alts�:
-
-// Ettere
-// Toere
-// Treere
-// Firere
-// Femmere
-// Seksere
-// Et par
-// To par
-// Tre ens
-// Fire ens
-// Lav
-// H�j
-// Fuldt hus
-// Chance
-// Yatzy
-// Hvis der er nogle af funktionerne, du ikke kan lave helt f�rdige, s� lav s� meget af dem, som du kan.S� taler vi om resten til eksamen.
-
-//     N�r du skriver din kode, s� t�nk over:
-
-// At koden skal v�re let at l�se og forst� for andre
-// Om du kan genbruge kode og p� den m�de skrive mindre kode
-// Hvordan du vil teste, at funktionerne er korrekte
- 
-
 function getObject(arr, name) {
 
     // if (getObject.cache[arr]) {
@@ -64,7 +16,7 @@ function getObject(arr, name) {
     for (let a of arr) {
         sum += a;
         obj[a] += a;        
-                            // at skrive og læse fra et tal indexeret objekt skulle gerne være lige så hurtigt som ved brug af et array
+                            // at skrive og læse fra et talindexeret objekt skulle gerne være lige så hurtigt som ved brug af et array
                             // https://www.smashingmagazine.com/2012/11/writing-fast-memory-efficient-javascript/
         if (obj[a] / a === 2) { // Hvis der er 2 forekomster af tallet
             pairs[pairCount++] = a;
@@ -85,9 +37,9 @@ function getObject(arr, name) {
     // løsn : erstat (pairCount - 1) med  Number(!!pairs[1])
     obj.fullHouse = obj.threeKind && pairCount === 2 ? sum : 0; 
     // Her skulle funktionen threeKind kaldes, hvis betingelserne var placeret i funktionerne
-    obj.low = !pairCount && sum === 15 ? 15 : 0; // Jeg antager at terningerne 12345 giver et resultat af 15
-    obj.high = !pairCount && sum === 20 ? 20 : 0; // Jeg antager at terningerne 23456 giver et resultat af 20
-    obj.yatzy = obj.fourKind * 5 / 4 === sum ? 50 + sum : 0; // Jeg antager at yatzy defineres som summen af fem ens plus 50
+    obj.low = !pairCount && sum === 15 ? 15 : 0; // Jeg antager, at terningerne 12345 giver et resultat af 15
+    obj.high = !pairCount && sum === 20 ? 20 : 0; // Jeg antager, at terningerne 23456 giver et resultat af 20
+    obj.yatzy = obj.fourKind * 5 / 4 === sum ? 50 + sum : 0; // Jeg antager, at yatzy defineres som summen af fem ens plus 50
     obj.chance = sum;
     
     // getObject.clearCache(); // Nye terninger
@@ -98,7 +50,7 @@ function getObject(arr, name) {
 // (getObject.clearCache = function () { 
 //     getObject.cache = {};
 // })();
-// Jeg antager at funktionen, med denne struktur, vil blive kaldt flere gange med det samme array som input. 
+// Jeg antager at funktionen med denne struktur vil blive kaldt flere gange med det samme array som input. 
 // Derfor kan der tilføjes et cache object på funktionen. Dette er naturligvis tiltænkt større datamængder/beregninger.
 
 // console.log(ettere([1,1,2,2,1])) // looping... 3
@@ -172,25 +124,26 @@ function chance(arr) {
 
 // Test af kode: 
 
-// For at teste koden kan man skrive flere løsninger på ovenstående problem og derefter sammenlige resultatet. 
-// Det kan eksempelvis gøres ved at tilfældighedsgenerere et antal arrays, 
-// og derpå på automatiseret vis sammenligne resultater med disse som input.
+// For at teste koden kan man skrive flere løsninger på ovenstående problem og derefter sammenligne resultatet. 
 
-// Oprettelse af 1 million tilfældige yatzy arrays :
+// var testArray = (function () { // lav en array med size antal tilfældige arrays 
 
-// var randomArray = (function (arrayLength, span, size) { 
-//     var arr = [],
-//         arrSize = [];
+//     var pos = [1, 2, 3, 4, 5, 6];
+//     var total = [];
 
-//     for (let i = 0; i < size; i++) {
-//         for (let ii = 0; ii < arrayLength; ii++) {
-//             arr.push(Math.floor((Math.random() * span[1]) + 1));
-//         }
-//         arrSize.push(arr);
-//         arr = [];
-//     }
-//     return arrSize;
-// }(5, [1, 6], 1000000))
+//     pos.forEach(function (pos1) {
+//         pos.forEach(function (pos2) {
+//             pos.forEach(function (pos3) {
+//                 pos.forEach(function (pos4) {
+//                     pos.forEach(function (pos5) {
+//                         total.push([pos1, pos2, pos3, pos4, pos5]);
+//                     });
+//                 });
+//             });
+//         });
+//     });
+//     return total;
+// }([1, 2, 3, 4, 5, 6]));
 
 // Eksempel på en assert function : 
 
