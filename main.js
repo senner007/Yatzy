@@ -126,7 +126,7 @@ function chance(arr) {
 
 // For at teste koden kan man skrive flere løsninger på ovenstående problem og derefter sammenligne resultatet. 
 
-// var testArray = (function () { // lav en array med size antal tilfældige arrays 
+// var testArray = (function () { // lav en array med alle mulige udfald
 
 //     var pos = [1, 2, 3, 4, 5, 6];
 //     var total = [];
@@ -164,7 +164,7 @@ function chance(arr) {
 // Her tester jeg ovenstående løsning med en anden.
 
 // Denne måde at teste på lader sig ikke altid gøre, og den er ikke sikker, da man kan have tænkt forkert i begge løsninger.
-// En anden måde at teste på, er ved at teste et specifikt input mod et forventet output.
+// En anden måde at teste på er ved at teste et specifikt input mod et forventet output.
 
 
 module.exports = {
