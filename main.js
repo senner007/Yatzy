@@ -126,9 +126,8 @@ function chance(arr) {
 
 // For at teste koden kan man skrive flere løsninger på ovenstående problem og derefter sammenligne resultatet. 
 
-// var testArray = (function () { // lav en array med alle mulige udfald
+// var testArray = (function (pos) { // lav en array med mulige udfald
 
-//     var pos = [1, 2, 3, 4, 5, 6];
 //     var total = [];
 
 //     pos.forEach(function (pos1) {
@@ -144,6 +143,7 @@ function chance(arr) {
 //     });
 //     return total;
 // }([1, 2, 3, 4, 5, 6]));
+
 
 // Eksempel på en assert function : 
 

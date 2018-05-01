@@ -14,9 +14,8 @@ function runTest(clear) {
         console.clear();
     }
 
-    var testArray = (function () { // lav en array med size antal tilfældige arrays 
+    var testArray = (function (pos) { // lav en array med mulige udfald
 
-        var pos = [1, 2, 3, 4, 5, 6];
         var total = [];
 
         pos.forEach(function (pos1) {
