@@ -50,9 +50,12 @@ function UseRegexSolution (arr) {
     }
 
     function fullHouse() {
-        if (!_regexArr) return 0;
-        return _regexArr.length === 2 && (_regexArr[0].length === 3 || _regexArr[1].length === 3) ? _sum : 0
+
+        var result = arr.slice(0).sort().join('').match(/\b(\d)\1{2}(\d)\2{1}(?<!\1)\b|\b(\d)\3{1}(\d)\4{2}(?<!\3)\b/g);
+        return result ? arr.reduce((a,b) => a+b,0) : 0
+        
     }
+      
 
     return {
         twoKind,
